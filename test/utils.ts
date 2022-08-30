@@ -54,6 +54,25 @@ export async function deployToken(
   return tokenContract;
 }
 
+export async function deployFarm(
+  devAddress: string,
+  starkDefiTokenAddress: string,
+  starkDefiTokenPerBlock: number | bigint,
+): Promise<StarknetContract> {
+  const farmContractFactory = await starknet.getContractFactory(
+    "contracts/farm/StarkDFarm.cairo"
+  );
+  const farmContract = await farmContractFactory.deploy(
+    { dev_address: devAddress,
+      stark_defi_token: starkDefiTokenAddress,
+      stark_defi_token_per_block: starkDefiTokenPerBlock
+    },
+    { salt: "0x42" }
+  );
+  console.log("Stark Defi Farm deployed at", farmContract.address);
+  return farmContract;
+}
+
 export async function deployFactory(
   feeToAddress: string
 ): Promise<StarknetContract> {

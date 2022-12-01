@@ -1,4 +1,9 @@
-%lang starknet
+//define function for sending 1 transaction.
 
-# @author StarkDefi
-# @license MIT
+//loop to perform multiplpe transactions
+userBatchTransactions = []
+i = 0
+
+while(i<length(userBatchTransactions)){
+    
+}
